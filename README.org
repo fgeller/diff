@@ -1,0 +1,3 @@
+* diff
+
+  [[http://cm.bell-labs.com/cm/cs/cstr/41.pdf][An Algorithm for Differential File Comparison]]
