@@ -93,7 +93,6 @@ func main() {
 	x, _ = lcs(1, []string{"b"}, 2, []string{"a", "b"})
 	fmt.Printf("%v ?= 1 - lcs(1, {'b'}, 2, {'a', 'b'})\n", x)
 
-
 	left := []string{"a", "b", "c", "d", "e", "f", "g"}
 	right := []string{"w", "a", "b", "x", "y", "z", "e"}
 	y, _ := lcsMatrix(right, left)
