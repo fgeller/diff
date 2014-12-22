@@ -3,12 +3,13 @@ package main
 import "fmt"
 import "errors"
 
-func lcsCheck(leftLimit int, leftFile []string, rightLimit int, rightFile []string) error {
+func limitCheck(leftLimit int, leftFile []string, rightLimit int, rightFile []string) error {
 	if leftLimit > len(leftFile) {
 		message := fmt.Sprintf(
 			"Out of bounds for left file: [%v] too large for slice of length [%v]",
 			leftLimit,
 			len(leftFile))
+
 		return errors.New(message)
 	}
 	if rightLimit > len(rightFile) {
@@ -24,7 +25,7 @@ func lcsCheck(leftLimit int, leftFile []string, rightLimit int, rightFile []stri
 }
 
 func lcs(leftLimit int, leftFile []string, rightLimit int, rightFile []string) (int, error) {
-	if err := lcsCheck(leftLimit, leftFile, rightLimit, rightFile); err != nil {
+	if err := limitCheck(leftLimit, leftFile, rightLimit, rightFile); err != nil {
 		return 0, err
 	}
 
