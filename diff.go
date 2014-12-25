@@ -58,13 +58,13 @@ func lcs(leftLimit int, leftFile []string, rightLimit int, rightFile []string) (
 }
 
 func lcsMatrix(leftFile []string, rightFile []string) ([][]int, error) {
-	sequenceLengths := make([][]int, len(leftFile))
+	sequenceLengths := make([][]int, len(rightFile))
 
-	for leftIndex, _ := range leftFile {
-		sequenceLengths[leftIndex] = make([]int, len(rightFile))
-		for rightIndex, _ := range rightFile {
+	for rightIndex, _ := range rightFile {
+		sequenceLengths[rightIndex] = make([]int, len(leftFile))
+		for leftIndex, _ := range leftFile {
 			lr, err := lcs(leftIndex+1, leftFile, rightIndex+1, rightFile)
-			sequenceLengths[leftIndex][rightIndex] = lr
+			sequenceLengths[rightIndex][leftIndex] = lr
 			if err != nil {
 				return [][]int{}, err
 			}
@@ -95,11 +95,10 @@ func main() {
 
 	left := []string{"a", "b", "c", "d", "e", "f", "g"}
 	right := []string{"w", "a", "b", "x", "y", "z", "e"}
-	y, _ := lcsMatrix(right, left)
+	y, _ := lcsMatrix(left, right)
 	fmt.Printf("  %v\n", left)
 	for index, line := range y {
 		fmt.Printf("%v %v\n", right[index], line)
 	}
+
 }
-
-
