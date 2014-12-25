@@ -39,7 +39,7 @@ func lcs(leftLimit int, leftFile []string, rightLimit int, rightFile []string) (
 			return 0, err
 		}
 
-		return 1+lcs, nil
+		return 1 + lcs, nil
 	}
 
 	maxLeft, err := lcs(leftLimit-1, leftFile, rightLimit, rightFile)
