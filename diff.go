@@ -93,12 +93,59 @@ func main() {
 	x, _ = lcs(1, []string{"b"}, 2, []string{"a", "b"})
 	fmt.Printf("%v ?= 1 - lcs(1, {'b'}, 2, {'a', 'b'})\n", x)
 
-	left := []string{"a", "b", "c", "d", "e", "f", "g"}
-	right := []string{"w", "a", "b", "x", "y", "z", "e"}
+	// left := []string{"a", "b", "c", "d", "e", "f", "g"}
+	// right := []string{"w", "a", "b", "x", "y", "z", "e"}
+	// y, _ := lcsMatrix(left, right)
+	// fmt.Printf("  %v\n", left)
+	// for index, line := range y {
+	// 	fmt.Printf("%v %v\n", right[index], line)
+	// }
+
+	left := []string{"a", "b", "c"}
+	right := []string{"w", "a", "b"}
 	y, _ := lcsMatrix(left, right)
 	fmt.Printf("  %v\n", left)
 	for index, line := range y {
 		fmt.Printf("%v %v\n", right[index], line)
+	}
+
+	runningCount := 0
+	for rightIndex, line := range y {
+		fmt.Printf("%v [", right[rightIndex])
+		for _, count := range line {
+			switch {
+			case count > runningCount:
+				runningCount += 1
+				fmt.Printf("+")
+			case count == runningCount:
+				fmt.Printf(" ")
+			case count < runningCount:
+				fmt.Printf("-")
+			}
+		}
+		fmt.Printf("]\n")
+	}
+
+	/*
+$ diff -e left right
+3d
+0a
+w
+.
+$
+*/
+
+	runningCount := 0
+	for rightIndex, line := range y {
+		for _, count := range line {
+			switch {
+			case count > runningCount:
+				runningCount += 1
+				fmt.Printf("%v")
+			case count == runningCount:
+			case count < runningCount:
+			}
+		}
 	}
 
 }
